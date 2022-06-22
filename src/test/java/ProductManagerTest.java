@@ -9,7 +9,6 @@ public class ProductManagerTest {
     Smartphone smartphone1 = new Smartphone("Гэлакси", "Самсунг");
     Book book2 = new Book("Коробка", "Агеев");
 
-
     @Test
     public void myTest1() {
         ProductRepository repository = new ProductRepository();
@@ -24,5 +23,29 @@ public class ProductManagerTest {
 
         assertArrayEquals(expected, actual);
 
+    }
+
+    @Test
+    public void myTest2() {
+        ProductRepository repository = new ProductRepository();
+        ProductManager manager = new ProductManager(repository);
+
+        manager.add(book1);
+
+        Product[] actual = manager.searchBy("ро");
+        Product[] expected = { book1 };
+
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void myTest3() {
+        ProductRepository repository = new ProductRepository();
+        ProductManager manager = new ProductManager(repository);
+
+        Product[] actual = manager.searchBy("ро");
+        Product[] expected = new Product[0];
+
+        assertArrayEquals(expected, actual);
     }
 }
